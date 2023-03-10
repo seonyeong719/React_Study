@@ -6,6 +6,7 @@ import { MockPost } from "./__mocks__/post";
 import { isModal } from "./store/Modal_page";
 import { useContext } from "react";
 import { useState } from "react";
+// import Buttons from "./components/Button/Button";
 
 function App() {
     const Posts = MockPost(10);
@@ -17,6 +18,7 @@ function App() {
     return (
         <>
             <Header />
+            {/* <Buttons posts={posts} setPosts={setPosts} /> */}
             {isModalOpen && <Modal posts={posts} setPosts={setPosts} />}
             {posts.map((userList) => (
                 <Index userList={userList} />

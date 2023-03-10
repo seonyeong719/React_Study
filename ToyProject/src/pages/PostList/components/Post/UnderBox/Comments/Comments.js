@@ -1,6 +1,11 @@
 import * as P from "../style";
+// import Buttons from "../../../../../../components/Button/Button";
 
 function Comments({ commentsUserList }) {
+    const onCommentEdit = () => {
+        console.log(commentsUserList.myComment);
+    };
+
     return (
         <P.CommentsBox>
             {/* 댓글 프로필 이미지 및 닉네임 */}
@@ -18,7 +23,7 @@ function Comments({ commentsUserList }) {
                         <div>{("" + commentsUserList.createdAt).slice(0, 24)}</div>
                     </div>
                     <div>
-                        <button>✏️️</button>
+                        <button onClick={onCommentEdit}>✏️️</button>
                         <button>🗑️</button>
                     </div>
                 </div>

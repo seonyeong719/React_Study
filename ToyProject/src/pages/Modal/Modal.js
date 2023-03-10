@@ -1,4 +1,3 @@
-import { useRef } from "react";
 import { useContext } from "react";
 import styled from "styled-components";
 import { isModal } from "../../store/Modal_page";
@@ -12,6 +11,8 @@ function Modal({ posts, setPosts }) {
         const userId = e.target.userId.value;
         const nickName = e.target.nickName.value;
         const content = e.target.content.value;
+
+        setIsModalOpen(false);
 
         setPosts([
             {
@@ -32,7 +33,7 @@ function Modal({ posts, setPosts }) {
                             nick_name: "",
                             profile_img: "",
                         },
-                        myComment: "",
+                        myComment: "Y",
                         createdAt: "",
                     },
                 ],
