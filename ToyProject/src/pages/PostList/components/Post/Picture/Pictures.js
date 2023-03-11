@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 function Pictures({ userList }) {
     const postImg = userList.Post_img;
+
     return (
         <>
             {postImg.map((el) => (

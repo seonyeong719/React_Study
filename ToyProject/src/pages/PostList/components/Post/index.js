@@ -2,14 +2,17 @@ import Contents from "./UnderBox/Contents/Contents";
 import Comments from "./UnderBox/Comments/Comments";
 import Pictures from "./Picture/Pictures";
 import styled from "styled-components";
+import SwiperSlider from "../../../../components/swiper/swiper";
 
 function Index({ userList }) {
     const commentsUser = userList.Comments;
+
     return (
         <>
             <MainBox>
-                <Pictures userList={userList} />
+                {/* <Pictures userList={userList} /> */}
 
+                <SwiperSlider userList={userList}></SwiperSlider>
                 <UnderBox>
                     <P.Contents userList={userList} />
                     {commentsUser.map((commentsUserList) => (
