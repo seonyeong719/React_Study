@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function TextChange() {
+function Mentor() {
   const [person, setPerson] = useState({
     name: "ㅇㅇㅇ",
     job: "개발자",
@@ -42,4 +42,4 @@ function TextChange() {
   );
 }
 
-export default TextChange;
+export default Mentor;

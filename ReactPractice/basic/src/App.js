@@ -1,10 +1,10 @@
 import Cursor from "./components/mouse/Point";
-import TextChange from "./page/Changetxt";
+import Mentor from "./page/Mentor";
 
 function App() {
   return (
     <>
-      <TextChange />
+      <Mentor />
       {/* <Cursor /> */}
     </>
   );
