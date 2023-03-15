@@ -2,7 +2,7 @@ import { useState } from "react";
 
 function Mentor() {
   const [person, setPerson] = useState({
-    name: "ㅇㅇㅇ",
+    name: "홍길동",
     job: "개발자",
     mentor: {
       name: "밥",
