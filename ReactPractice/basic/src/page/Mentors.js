@@ -31,6 +31,28 @@ function Mentors() {
     }));
   };
 
+  //수정
+  const mentorAddBtn = () => {
+    const mentorName = prompt("멘토의 이름은?");
+    const mentorsJob = prompt("멘토의 직함은?");
+
+    setPeople((people) => ({
+      ...people,
+      mentors: [...people.mentors, { name: mentorName, title: mentorsJob }],
+    }));
+  };
+
+  // 삭제
+  const mentorRemoveBtn = () => {
+    const remove = prompt("누구를 삭제하시겠습니까?");
+
+    setPeople((people) => ({
+      ...people,
+      mentors: people.mentors.filter((el) => {
+        return el.name !== remove;
+      }),
+    }));
+  };
   return (
     <div>
       <h1>
@@ -45,6 +67,8 @@ function Mentors() {
         ))}
       </ul>
       <button onClick={mentorChangeBtn}>멘토의 이름 바꾸기</button>
+      <button onClick={mentorAddBtn}>멘토의 추가하기</button>
+      <button onClick={mentorRemoveBtn}>멘토의 삭제하기</button>
     </div>
   );
 }
