@@ -1,20 +1,7 @@
 import { useState } from "react";
 
 function Mentors() {
-  const [people, setPeople] = useState({
-    name: "철수",
-    title: "개발자",
-    mentors: [
-      {
-        name: "밥",
-        title: "시니어개발자",
-      },
-      {
-        name: "제임스",
-        title: "시니어개발자",
-      },
-    ],
-  });
+  const [people, setPeople] = useState(initialPeople);
 
   console.log(people);
 
@@ -52,6 +39,21 @@ function Mentors() {
         return el.name !== remove;
       }),
     }));
+  };
+
+  const initialPeople = {
+    name: "철수",
+    title: "개발자",
+    mentors: [
+      {
+        name: "밥",
+        title: "시니어개발자",
+      },
+      {
+        name: "제임스",
+        title: "시니어개발자",
+      },
+    ],
   };
   return (
     <div>
