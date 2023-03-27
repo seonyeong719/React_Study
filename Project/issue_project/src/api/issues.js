@@ -10,4 +10,5 @@ const IssuesApi = {
     return Axios.get(PATH, `${issue}`);
   },
 };
+
 export default IssuesApi;
