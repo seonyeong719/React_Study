@@ -1,6 +1,6 @@
 import { RouterProvider } from "react-router-dom";
 // import { Provider } from "react-redux";
-// import store from "./store/store";
+// import { store } from "./store/store";
 import router from "./routes/routing";
 
 function App() {
@@ -8,6 +8,7 @@ function App() {
     <>
       {/* <Provider store={store}> */}
       <RouterProvider router={router} />
+
       {/* </Provider> */}
     </>
   );

@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import IssuesApi from "../api/issues";
 
 const initialState = {
-  issues: [],
+  issues: {},
   getAnIssuesState: {
     loading: false,
     done: false,
@@ -11,8 +11,9 @@ const initialState = {
 };
 
 // 썽크로 미들웨어로 빼주고, 슬라이스에 사용을 하는거 같은데,
-export const getAnIssue = createAsyncThunk(`issues/getAnIssue`, async (issue) => {
-  const res = await IssuesApi.getAnIssue(issue);
+export const getAnIssue = createAsyncThunk(`issues/getAnIssue`, async (id) => {
+  const res = await IssuesApi.getAnIssue(id);
+  console.log(res.data);
   return res.data;
 });
 

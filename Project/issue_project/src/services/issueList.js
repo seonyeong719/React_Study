@@ -10,8 +10,9 @@ const initialState = {
   },
 };
 
-export const getIssue = createAsyncThunk(`issues/getIssue`, async (id) => {
-  const res = await IssuesApi.getIssueList(id);
+export const getIssue = createAsyncThunk(`issues/getIssue`, async () => {
+  const res = await IssuesApi.getIssueList();
+  console.log(res.data);
   return res.data;
 });
 

@@ -1,6 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import IssueHeader from "../components/Layout";
-import MainPage from "../pages";
+import MainPage from "../pages/list/components/mainPage";
 
 const router = createBrowserRouter([
   {
