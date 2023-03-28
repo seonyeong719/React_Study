@@ -7,5 +7,3 @@ export const rootReducer = combineReducers({
   issue: issueSlice.reducer,
   anIssue: getAnIssueSlice.reducer,
 });
-
-console.log(rootReducer);
