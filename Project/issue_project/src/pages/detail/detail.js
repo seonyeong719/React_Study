@@ -1,3 +1,5 @@
+import { getAnIssue } from "../../services/issueDetail";
+
 function DetailPage() {
   return (
     <>

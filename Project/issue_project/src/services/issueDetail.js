@@ -20,18 +20,18 @@ export const getAnIssueSlice = createSlice({
   name: "anIssue",
   initialState,
   extraReducers: (builder) => {
-    builder.addCase(getAnIssueSlice.pending, (state) => {
+    builder.addCase(getAnIssue.pending, (state) => {
       state.getAnIssuesState.loading = true;
     });
 
-    builder.addCase(getAnIssueSlice.fulfilled, (state, action) => {
+    builder.addCase(getAnIssue.fulfilled, (state, action) => {
       state.issues = action.payload;
       state.getAnIssuesState.loading = false;
       state.getAnIssuesState.done = true;
       state.getAnIssuesState.err = null;
     });
 
-    builder.addCase(getAnIssueSlice.rejected, (state, action) => {
+    builder.addCase(getAnIssue.rejected, (state, action) => {
       state.getAnIssuesState.loading = false;
       state.getAnIssuesState.done = true;
       state.getAnIssuesState.err = action.payload;
