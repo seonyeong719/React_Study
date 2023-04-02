@@ -6,8 +6,8 @@ const SearchRecent = ({ locals }) => {
       <Title>최근 검색어</Title>
       <Ul>
         {locals &&
-          locals.map((e) => {
-            return <Li>{e}</Li>;
+          locals.map((e, idx) => {
+            return <Li key={idx}>{e}</Li>;
           })}
       </Ul>
     </RecentWrap>

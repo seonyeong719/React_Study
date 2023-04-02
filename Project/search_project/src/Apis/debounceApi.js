@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 
 //value는 실행하는 곳에서 보내준 인풋 값이다.보내준걸 매개변수로 보내줌.
 // delay는 0.5초 설정
-const useDebounce = (value, delay = 500) => {
+const useDebounce = (value, delay = 300) => {
   const [debounce, setDebounce] = useState(value);
 
   useEffect(() => {

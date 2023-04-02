@@ -17,9 +17,7 @@ const SearchListBox = () => {
     try {
       const res = await SearchApi(debounce);
       setList(res.data); //간단한게 말하면 api 통신할때 debounce로 따로 기능을 만들어준 친구를 매개변수로 꽂아줌(플러스 해줌).
-    } catch (err) {
-      setList([err.response.data]); // 에러가 났을때 server.js 에서 send를 보내줬기 때문에 이렇게 해주면 에러 자동으로 가능.
-    }
+    } catch (err) {}
   };
 
   useEffect(() => {
@@ -49,60 +47,63 @@ const SearchListBox = () => {
     if (recentBtn.length > 5) recentBtn.pop();
     localStorage.setItem("recent", JSON.stringify(recentBtn));
     setLocals(JSON.parse(localStorage.getItem("recent")));
-    setSearchInput("");
 
     // 동일검색어 최신으로 띄우기
-    const a = locals.find((el) => el === searchInput);
-    if (a) {
-      const b = locals.filter((el) => el !== a);
-      b.unshift(a);
-      setLocals(b);
+    const sameInput = locals.find((el) => el === searchInput);
+    if (sameInput) {
+      const inputList = locals.filter((el) => el !== sameInput);
+      inputList.unshift(sameInput);
+      setLocals(inputList);
     }
+    setFocusIdx(-1);
+    setSearchInput("");
   };
 
-  // arrow기능
-
+  // keyPress 기능
   const onArrowKey = (e) => {
+    if (e.nativeEvent.isComposing) return;
     if (e.key === "ArrowDown") {
       setFocusIdx((prev) => (prev + 1) % list.length);
     }
+
     if (e.key === "ArrowUp") {
       setFocusIdx((prev) => (prev - 1) % list.length);
       if (focusIdx === -1) {
         setFocusIdx(list.length - 1);
       }
     }
-    //여기서 구현 멈춤..
+
     if (e.key === "Enter") {
       if (searchInput.trim().length === 0) return;
-      recentBtn.unshift(searchInput);
+      recentBtn.unshift(list[focusIdx]);
       if (recentBtn.length > 5) recentBtn.pop();
       localStorage.setItem("recent", JSON.stringify(recentBtn));
       setLocals(JSON.parse(localStorage.getItem("recent")));
+      setFocusIdx(-1);
       setSearchInput("");
     }
+
     if (e.key === "Escape") {
+      setFocusIdx(-1);
     }
   };
 
   return (
-    <>
-      <Wrap>
-        <SearchWrap>
-          <SearhBox
-            placeholder="검색어를 입력하세요"
-            value={list[focusIdx]}
-            onKeyDown={onArrowKey}
-            onChange={searchPage}
-          />
-          <SearchBtn localAddBtn={localAddBtn} />
-        </SearchWrap>
-        <div>
-          <SearchList focusIdx={focusIdx} searchInput={searchInput} list={list} />
-          <SearchRecent locals={locals} />
-        </div>
-      </Wrap>
-    </>
+    <Wrap>
+      <SearchWrap>
+        <SearhBox
+          placeholder="검색어를 입력하세요"
+          value={list[focusIdx] ?? searchInput}
+          onKeyDown={onArrowKey}
+          onChange={searchPage}
+        />
+        <SearchBtn localAddBtn={localAddBtn} />
+      </SearchWrap>
+      <div>
+        <SearchList focusIdx={focusIdx} searchInput={searchInput} list={list} />
+        <SearchRecent locals={locals} />
+      </div>
+    </Wrap>
   );
 };
 export default SearchListBox;
@@ -110,11 +111,12 @@ export default SearchListBox;
 const Wrap = styled.div`
   display: flex;
   flex-direction: column;
-  /* align-items: center; */
-  /* justify-content: center; */
   height: 100%;
 `;
 
-const SearhBox = styled.input``;
+const SearhBox = styled.input`
+  width: 30%;
+  height: 40px;
+`;
 
 const SearchWrap = styled.div``;
