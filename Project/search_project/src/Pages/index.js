@@ -5,6 +5,7 @@ import SearchList from "./Components/searchList";
 import { SearchApi } from "../Apis/api";
 import styled from "styled-components";
 import SearchRecent from "./Components/searchRecent";
+let recentBtn = JSON.parse(localStorage.getItem("recent"));
 
 const SearchListBox = () => {
   const [list, setList] = useState([]);
@@ -31,7 +32,6 @@ const SearchListBox = () => {
   };
 
   // 로컬스토리지
-  let recentBtn = JSON.parse(localStorage.getItem("recent"));
 
   useEffect(() => {
     if (!localStorage.recent) {
@@ -61,6 +61,7 @@ const SearchListBox = () => {
 
   // keyPress 기능
   const onArrowKey = (e) => {
+    if (!searchInput) return;
     if (e.nativeEvent.isComposing) return;
     if (e.key === "ArrowDown") {
       setFocusIdx((prev) => (prev + 1) % list.length);
