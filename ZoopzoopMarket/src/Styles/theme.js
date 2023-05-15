@@ -1,15 +1,24 @@
-const color = {
-	primary: '#FF3647',
-	subBeige: '#E0D4C6',
-	subLightGreen: '#9EC284',
-	subBeigeGreen: '#BECAA2',
+const PALETTE = {
+	primary: {
+		100: '#FFD1D1',
+		200: '#FF9494',
+		300: '#F87474',
+		400: '#FF3647',
+	},
+	subColor: '#FFF5E4',
+	fontColor: '#FFFFFF',
+	error: '#FF0000',
 	white: '#FFFFFF',
 	black: '#000000',
-	gray: '#D9D9D9',
+	gray: {
+		100: '#E9E9E9',
+		200: '#D9D9D9',
+		300: '#656565',
+	},
 };
 
 // 폰트 크기
-const fontSize = {
+const FONT_SIZE = {
 	micro: '6px',
 	es: '10px',
 	xs: '12px',
@@ -22,7 +31,7 @@ const fontSize = {
 };
 
 // 폰트 굵기
-const fontWeight = {
+const FONT_WEIGHT = {
 	light: '300',
 	regular: '400',
 	bold: '700',
@@ -30,7 +39,7 @@ const fontWeight = {
 };
 
 export const theme = {
-	color,
-	fontSize,
-	fontWeight,
+	PALETTE,
+	FONT_SIZE,
+	FONT_WEIGHT,
 };
