@@ -1,0 +1,92 @@
+Recoil
+
+recoil은 react를 위한 상태 관리 라이브러리이다. 
+
+
+    * atom 
+        - atom은 상태(state)의 일부를 나타낸다. atom은 어떤 컴포넌트에서나 읽고 쓸 수 있다.
+        리코일은 사용하고자 하는 아톰을 컴포넌트들이 구독하면서 상태관리가 가능하다. 
+
+    * selector
+        - 다른 아톰, 혹은 셀렉터의 상태를 입력받아 파생된 데이터를 반환하는 순수 함수 
+
+
+
+사용 방법 ? 
+
+    1. 설치
+        - npm i recoil 
+
+------------------------------------------------------------------
+
+    2. RecoilRoot
+        - 최상위 폴더에 => import { RecoilRoot } from 'recoil'; 해주고 ,
+          <RecoilRoot> 로 감싸준다.
+
+          ex) // App.js
+              import { RecoilRoot } from 'recoil';
+
+              function App(){
+                return(
+                    <RecoilRoot>
+                        <MainPage/>
+                        <ModalPage/>
+                    </RecoilRoot>
+                )
+              }
+
+------------------------------------------------------------------
+
+
+    3. Atom 
+        - atoms.js 파일을 생성하고 Recoil의 atom function 을 사용하여 필요한 데이터를 설정한다.
+          atom 은 두 가지를 요구하는데 첫 번째는 key로 unique ID 이고 두 번째는 default value 이다.
+
+          ex) // atom.js
+              import { atom } from 'recoil';
+
+              export const addModalAtom = atom({
+                key: "addModalAtom",
+                default: false,
+              })
+
+------------------------------------------------------------------
+
+        3-1. useRecoilValue()
+            - 컴포넌트가 atom을 읽게 하기 위해선 useRecoilValue() 를 사용한다.
+
+          ex) // MainPage.js
+              import { useRecoilValue } from 'recoil';
+              import { addModalAtom } from './atom';
+
+              function MainPage(){
+                const isToggle = useRecoilValue(addModalAtom);
+
+                return <div>{isToggle}</div>;
+              }
+
+------------------------------------------------------------------
+
+        3-2. useSetRecoilState()
+            - 컴포넌트가 atom을 쓰게 하기 위해서는 useSetRecoilState()를 사용하면 된다.
+
+          ex) import { useSetRecoilState } from 'recoil';
+              import { addModalAtom } from './atom';
+              
+              function ModalPage(){
+                const toggleAtom = useSetRecoilState(addModalAtom);
+
+                const toggle = () => toggleAtom((prev)=> !prev);
+
+                return(
+                    <div>
+                        <button onClick={toggle}>Mode</button>
+                    </div>
+                );
+              }
+
+------------------------------------------------------------------
+        3-3. useRecoilState()
+            - atom을 읽고 쓰게 하기 위해서는 useRecoilState() 를 사용한다.
+
+------------------------------------------------------------------
