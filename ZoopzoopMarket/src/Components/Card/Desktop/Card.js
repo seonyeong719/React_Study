@@ -88,7 +88,7 @@ const ItemTitle = styled.div`
 const ItemPrice = styled.span`
 	width: 100%;
 	font-size: ${({ theme }) => theme.fontSize.sm};
-	font-weight: ${({ theme }) => theme.fontWeight.bold};
+	font-weight: ${({ theme }) => theme.FONT_WEIGHT.bold};
 	margin-bottom: 15px;
 `;
 

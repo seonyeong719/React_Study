@@ -73,7 +73,7 @@ const CloseBtn = styled.button`
 	right: 10px;
 	font-size: ${({ theme }) => theme.fontSize.md};
 	:hover {
-		font-weight: ${({ theme }) => theme.fontWeight.bold};
+		font-weight: ${({ theme }) => theme.FONT_WEIGHT.bold};
 	}
 `;
 

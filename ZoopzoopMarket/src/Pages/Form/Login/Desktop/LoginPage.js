@@ -134,7 +134,7 @@ const Button = styled.button`
 	background: ${({ theme }) => theme.color.primary};
 	cursor: pointer;
 	color: ${({ theme }) => theme.color.white};
-	font-size: ${({ theme }) => theme.fontSize.base};
+	font-size: ${({ theme }) => theme.FONT_SIZE.base};
 	font-weight: ${({ theme }) => theme.fontWeight.bold};
 	:disabled {
 		background: ${({ theme }) => theme.color.gray};

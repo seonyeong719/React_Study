@@ -33,13 +33,13 @@ const Bar = styled.div`
 	width: 100%;
 	margin: 0 auto;
 	display: flex;
-	font-size: ${({ theme }) => theme.fontSize.base};
-	font-size: ${({ theme }) => theme.fontWeight.bold};
+	font-size: ${({ theme }) => theme.FONT_SIZE.base};
+	font-size: ${({ theme }) => theme.FONT_WEIGHT.bold};
 	color: black;
 `;
 
 const Menu = styled(Link)`
-	color: ${({ theme }) => theme.color.black};
+	color: ${({ theme }) => theme.PALETTE.black};
 	text-decoration: none;
 	padding-right: 20px;
 `;
@@ -56,12 +56,12 @@ const RightMenu = styled.div`
 const MyChat = styled.div`
 	color: ${props =>
 		props.props === 1
-			? ({ theme }) => theme.color.primary
-			: ({ theme }) => theme.color.black};
+			? ({ theme }) => theme.PALETTE.primary[400]
+			: ({ theme }) => theme.PALETTE.black};
 `;
 
 const MyPageMenu = styled(Link)`
-	color: ${({ theme }) => theme.color.black};
+	color: ${({ theme }) => theme.PALETTE.black};
 	text-decoration: none;
 `;
 

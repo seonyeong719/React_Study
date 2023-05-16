@@ -58,21 +58,21 @@ const LogoutBar = styled.div`
 	span {
 		padding-top: 8px;
 		padding-right: 10px;
-		font-size: ${({ theme }) => theme.fontSize.sm};
+		font-size: ${({ theme }) => theme.FONT_SIZE.sm};
 	}
 `;
 
 const LogoutButton = styled.button`
 	padding: 5px 10px;
 	border-radius: 5px;
-	font-size: ${({ theme }) => theme.fontSize.xs};
-	font-weight: ${({ theme }) => theme.fontWeight.bold};
-	color: ${({ theme }) => theme.color.white};
-	background-color: ${({ theme }) => theme.color.gray};
+	font-size: ${({ theme }) => theme.FONT_SIZE.xs};
+	font-weight: ${({ theme }) => theme.FONT_WEIGHT.bold};
+	color: ${({ theme }) => theme.PALETTE.white};
+	background-color: ${({ theme }) => theme.PALETTE.gray[200]};
 	cursor: pointer;
 
 	&:hover {
-		background-color: ${({ theme }) => theme.color.primary};
+		background-color: ${({ theme }) => theme.PALETTE.primary[400]};
 	}
 `;
 

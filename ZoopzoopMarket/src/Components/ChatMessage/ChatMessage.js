@@ -72,7 +72,7 @@ const ChatContentUpper = styled.div`
 
 const NickName = styled.span`
 	font-size: ${({ theme }) => theme.fontSize.sm};
-	font-weight: ${({ theme }) => theme.fontWeight.bolder};
+	font-weight: ${({ theme }) => theme.FONT_WEIGHT.bolder};
 `;
 
 const ChatContentdown = styled.div`

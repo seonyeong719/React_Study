@@ -125,29 +125,29 @@ const Wrapper = styled.div`
 `;
 const Title = styled.div`
 	text-align: center;
-	font-size: ${({ theme }) => theme.fontSize.md};
-	font-weight: ${({ theme }) => theme.fontWeight.bold};
+	font-size: ${({ theme }) => theme.FONT_SIZE.md};
+	font-weight: ${({ theme }) => theme.FONT_WEIGHT.bold};
 	margin-top: 80px;
 	margin-bottom: 80px;
 `;
 const SubTitle = styled.div`
 	margin-top: 10px;
-	font-size: ${({ theme }) => theme.fontSize.base};
+	font-size: ${({ theme }) => theme.FONT_SIZE.base};
 `;
 const ChartContainer = styled.div`
 	margin-top: 80px;
 	display: flex;
 `;
 const Average = styled.div`
-	font-size: ${({ theme }) => theme.fontSize.base};
+	font-size: ${({ theme }) => theme.FONT_SIZE.base};
 	margin-top: 80px;
 	margin-right: 18px;
 `;
 
 const RecentlyClosed = styled.div`
 	margin-top: 80px;
-	font-size: ${({ theme }) => theme.fontSize.md};
-	font-weight: ${({ theme }) => theme.fontWeight.bold};
+	font-size: ${({ theme }) => theme.FONT_SIZE.md};
+	font-weight: ${({ theme }) => theme.FONT_WEIGHT.bold};
 `;
 const ItemList = styled.div`
 	display: flex;

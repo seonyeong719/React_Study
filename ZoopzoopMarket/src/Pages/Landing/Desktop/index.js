@@ -88,7 +88,7 @@ const Section1 = styled.section`
 		margin-bottom: 15px;
 	}
 	& > p {
-		font-size: ${({ theme }) => theme.fontSize.base};
+		font-size: ${({ theme }) => theme.FONT_SIZE.base};
 		margin-top: 10px;
 	}
 

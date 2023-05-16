@@ -39,7 +39,7 @@ const ErrorImage = styled.img`
 
 const Text = styled.div`
 	text-align: center;
-	font-size: ${({ theme }) => theme.fontSize.base};
+	font-size: ${({ theme }) => theme.FONT_SIZE.base};
 	margin-bottom: 20px;
 `;
 

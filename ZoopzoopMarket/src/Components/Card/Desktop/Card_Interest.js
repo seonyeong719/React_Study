@@ -78,14 +78,14 @@ const ItemInfo = styled.div`
 
 const ItemTitle = styled.div`
 	width: 100%;
-	font-size: ${({ theme }) => theme.fontSize.sm};
+	font-size: ${({ theme }) => theme.FONT_SIZE.sm};
 	margin-bottom: 10px;
 `;
 
 const ItemPrice = styled.span`
 	width: 100%;
-	font-size: ${({ theme }) => theme.fontSize.sm};
-	font-weight: ${({ theme }) => theme.fontWeight.bold};
+	font-size: ${({ theme }) => theme.FONT_SIZE.sm};
+	font-weight: ${({ theme }) => theme.FONT_WEIGHT.bold};
 	margin-bottom: 15px;
 `;
 

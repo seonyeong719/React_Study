@@ -33,16 +33,16 @@ const FooterText = styled.div`
 `;
 
 const Text1 = styled.div`
-	font-size: ${({ theme }) => theme.fontSize.base};
+	font-size: ${({ theme }) => theme.FONT_SIZE.base};
 `;
 
 const Text2 = styled.div`
-	font-size: ${({ theme }) => theme.fontSize.lg};
-	font-weight: ${({ theme }) => theme.fontWeight.bolder};
+	font-size: ${({ theme }) => theme.FONT_SIZE.lg};
+	font-weight: ${({ theme }) => theme.FONT_WEIGHT.bolder};
 `;
 
 const Text3 = styled.div`
-	font-size: ${({ theme }) => theme.fontSize.xs};
+	font-size: ${({ theme }) => theme.FONT_SIZE.xs};
 `;
 
 const S = {
