@@ -29,8 +29,8 @@ const Button = styled.span`
 	text-align: center;
 	background-color: white;
 	padding: 10px;
-	font-size: ${({ theme }) => theme.FONT_SIZE.base};
-	font-weight: ${({ theme }) => theme.FONT_WEIGHT.bold};
+	font-size: ${({ theme }) => theme.fontSize.base};
+	font-weight: ${({ theme }) => theme.fontWeight.bold};
 	position: absolute;
 	color: red;
 	top: 50%;
@@ -66,18 +66,18 @@ const ItemInfo = styled.div`
 `;
 
 const ItemTitle = styled.div`
-	font-size: ${({ theme }) => theme.FONT_SIZE.base};
+	font-size: ${({ theme }) => theme.fontSize.base};
 	margin-bottom: 10px;
 `;
 
 const ItemPrice = styled.span`
-	font-size: ${({ theme }) => theme.FONT_SIZE.base};
-	font-weight: ${({ theme }) => theme.FONT_WEIGHT.bold};
+	font-size: ${({ theme }) => theme.fontSize.base};
+	font-weight: ${({ theme }) => theme.fontWeight.bold};
 	margin-bottom: 15px;
 `;
 
 const ItemTag = styled.span`
-	font-size: ${({ theme }) => theme.FONT_SIZE.sm};
+	font-size: ${({ theme }) => theme.fontSize.sm};
 	overflow: hidden;
 	margin-bottom: 10px;
 `;

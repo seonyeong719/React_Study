@@ -13,7 +13,7 @@ const MannerMeter = ({ ondo }) => {
 
 	return (
 		<S.Wrapper>
-			<div>{ondo}점</div>
+			<div>{ondo}도</div>
 			{ondo >= 36.5 && (
 				<>
 					<FontAwesomeIcon
@@ -73,20 +73,20 @@ export default MannerMeter;
 
 const Wrapper = styled.div`
 	${flexAllCenter};
-	justify-content: end;
-	font-weight: ${({ theme }) => theme.FONT_WEIGHT.bold};
-	font-size: ${({ theme }) => theme.FONT_SIZE.md};
+	/* justify-content: end; */
+	font-weight: ${({ theme }) => theme.fontWeight.bold};
+	font-size: ${({ theme }) => theme.fontSize.md};
 	& > div {
 		margin-right: 10px;
 	}
-	position: relative;
+	/* position: relative; */
 `;
 
 const MannerMeterExplain = styled.div`
 	background-color: #d9d9d9;
 	width: 320px;
 	position: absolute;
-	font-size: ${({ theme }) => theme.FONT_SIZE.xs};
+	font-size: ${({ theme }) => theme.fontSize.xs};
 	top: 40px;
 	left: 50px;
 	text-align: center;

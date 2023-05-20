@@ -44,7 +44,7 @@ const MockLikeList = [
 ];
 
 const likeListArr = [];
-for (let i = 0; i < 50; i++) {
+for (let i = 0; i < 21; i++) {
 	likeListArr.push(...MockLikeList);
 }
 

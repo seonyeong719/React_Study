@@ -50,8 +50,15 @@ const MyPage = () => {
 export default MyPage;
 
 const Wrapper = styled.div`
-	width: 60%;
+	width: 70%;
 	margin: 0 auto;
+	background-color: beige;
+	@media ${({ theme }) => theme.device.tablet} {
+		width: 85%;
+	}
+	@media ${({ theme }) => theme.device.mobile} {
+		width: 95%;
+	}
 `;
 
 const S = {

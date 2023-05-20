@@ -53,7 +53,7 @@ const Wrapper = styled.div`
 	${flexAllCenter}
 	& > div {
 		margin: 0 30px;
-		font-size: ${({ theme }) => theme.FONT_SIZE.lg};
+		font-size: ${({ theme }) => theme.fontSize.lg};
 	}
 `;
 

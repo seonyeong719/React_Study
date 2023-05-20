@@ -28,8 +28,8 @@ const Button = styled.span`
 	padding: 10px;
 	text-align: center;
 	background-color: white;
-	font-size: ${({ theme }) => theme.FONT_SIZE.base};
-	font-weight: ${({ theme }) => theme.FONT_WEIGHT.bolder};
+	font-size: ${({ theme }) => theme.fontSize.base};
+	font-weight: ${({ theme }) => theme.fontWeight.bolder};
 	color: red;
 	top: 50%;
 	left: 50%;
@@ -69,7 +69,7 @@ const ItemTitle = styled.div`
 
 const ItemPrice = styled.span`
 	font-size: ${({ theme }) => theme.fontSize.sm};
-	font-weight: ${({ theme }) => theme.FONT_WEIGHT.bold};
+	font-weight: ${({ theme }) => theme.fontWeight.bold};
 	margin-bottom: 15px;
 `;
 

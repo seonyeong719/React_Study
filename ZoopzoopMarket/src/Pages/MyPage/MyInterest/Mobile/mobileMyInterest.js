@@ -53,8 +53,8 @@ const Head = styled.div`
 	width: 100%;
 	${flexAllCenter}
 	& > span {
-		font-size: ${({ theme }) => theme.FONT_SIZE.base};
-		font-weight: ${({ theme }) => theme.FONT_WEIGHT.bolder};
+		font-size: ${({ theme }) => theme.fontSize.base};
+		font-weight: ${({ theme }) => theme.fontWeight.bolder};
 	}
 	& > span:first-child {
 		padding: 30px;
@@ -102,18 +102,18 @@ const ItemInfo = styled.div`
 `;
 
 const ItemTitle = styled.div`
-	font-size: ${({ theme }) => theme.FONT_SIZE.sm};
+	font-size: ${({ theme }) => theme.fontSize.sm};
 	margin-bottom: 10px;
 `;
 
 const ItemPrice = styled.span`
-	font-size: ${({ theme }) => theme.FONT_SIZE.sm};
-	font-weight: ${({ theme }) => theme.FONT_WEIGHT.bold};
+	font-size: ${({ theme }) => theme.fontSize.sm};
+	font-weight: ${({ theme }) => theme.fontWeight.bold};
 	margin-bottom: 15px;
 `;
 
 const ItemTag = styled.span`
-	font-size: ${({ theme }) => theme.FONT_SIZE.xs};
+	font-size: ${({ theme }) => theme.fontSize.xs};
 	overflow: hidden;
 	/* margin-bottom: 10px; */
 	padding-bottom: 20px; // 이부분은 마진이 아닌 패딩을 줘야 해시태그들과 버튼이 안겹쳐짐..

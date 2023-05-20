@@ -48,8 +48,8 @@ const SearchBtn = styled.button`
 	width: 80px;
 	height: 30px;
 	border: 1px solid ${({ theme }) => theme.color.primary};
-	font-size: ${({ theme }) => theme.FONT_SIZE.sm};
-	font-weight: ${({ theme }) => theme.FONT_WEIGHT.bold};
+	font-size: ${({ theme }) => theme.fontSize.sm};
+	font-weight: ${({ theme }) => theme.fontWeight.bold};
 	border-radius: 10px;
 	background: none;
 	cursor: pointer;

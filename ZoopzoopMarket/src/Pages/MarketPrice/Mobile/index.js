@@ -56,8 +56,8 @@ const MobileMarketPrice = () => {
 								}}
 								itemStyle={{
 									color: 'red',
-									FONT_SIZE: parseInt(theme.FONT_SIZE.es),
-									FONT_WEIGHT: 'normal',
+									fontSize: parseInt(theme.fontSize.es),
+									fontWeight: 'normal',
 									textTransform: 'uppercase',
 								}}
 							/>
@@ -102,14 +102,14 @@ const Wrapper = styled.div`
 `;
 const Title = styled.div`
 	text-align: center;
-	font-size: ${({ theme }) => theme.FONT_SIZE.sm};
-	font-weight: ${({ theme }) => theme.FONT_WEIGHT.bold};
+	font-size: ${({ theme }) => theme.fontSize.sm};
+	font-weight: ${({ theme }) => theme.fontWeight.bold};
 	margin-top: 30px;
 	margin-bottom: 20px;
 `;
 const SubTitle = styled.div`
 	margin-top: 10px;
-	font-size: ${({ theme }) => theme.FONT_SIZE.base};
+	font-size: ${({ theme }) => theme.fontSize.base};
 `;
 const ChartContainer = styled.div`
 	margin-top: 20px;
@@ -117,7 +117,7 @@ const ChartContainer = styled.div`
 	flex-direction: column;
 `;
 const Average = styled.div`
-	font-size: ${({ theme }) => theme.FONT_SIZE.base};
+	font-size: ${({ theme }) => theme.fontSize.base};
 	margin-top: 30px;
 	margin-right: 18px;
 	margin-bottom: 30px;
@@ -127,8 +127,8 @@ const Average = styled.div`
 const RecentlyClosed = styled.div`
 	margin: 0 auto;
 	margin-top: 30px;
-	font-size: ${({ theme }) => theme.FONT_SIZE.sm};
-	font-weight: ${({ theme }) => theme.FONT_WEIGHT.bold};
+	font-size: ${({ theme }) => theme.fontSize.sm};
+	font-weight: ${({ theme }) => theme.fontWeight.bold};
 `;
 const ItemList = styled.div`
 	width: 390px;
