@@ -17,8 +17,11 @@ import AccountBookPage from 'Pages/MyPage/MyAccountBook/Desktop';
 import MainPage from 'Pages/Main';
 import ReviewPage from 'Pages/Review';
 import YourProfile from 'Pages/YourProfile/Desktop';
-// import PrivateRoute from './private';
-import MyUserEdit2 from 'Pages/MyPage/MyUserEdit2/myUserEdit2';
+import WholeListPage from 'Pages/SearchList/Desktop/wholeList';
+import PrivateRoute from './private';
+import MyPasswordEdit from 'Pages/MyPage/MyUserEdit/MyPasswordEdit/myPasswordEdit';
+import MyUserEdit from 'Pages/MyPage/MyUserEdit/myUserEdit';
+import MyReview from 'Pages/MyPage/MyReview/MyReview';
 
 const router = createBrowserRouter([
 	{
@@ -37,9 +40,9 @@ const router = createBrowserRouter([
 
 	{
 		element: (
-			// <PrivateRoute>
-			<LayOut />
-			// </PrivateRoute>
+			<PrivateRoute>
+				<LayOut />
+			</PrivateRoute>
 		),
 		children: [
 			{
@@ -88,7 +91,15 @@ const router = createBrowserRouter([
 					},
 					{
 						path: '/mypage/user_edit',
-						element: <MyUserEdit2 />,
+						element: <MyUserEdit />,
+					},
+					{
+						path: '/mypage/user_password_edit',
+						element: <MyPasswordEdit />,
+					},
+					{
+						path: '/mypage/review',
+						element: <MyReview />,
 					},
 				],
 			},
@@ -107,6 +118,10 @@ const router = createBrowserRouter([
 			{
 				path: 'search_list/:word',
 				element: <SearchListPage />,
+			},
+			{
+				path: 'search_list/:word/:category',
+				element: <WholeListPage />,
 			},
 			{
 				path: 'review',

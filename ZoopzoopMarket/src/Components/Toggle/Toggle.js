@@ -1,10 +1,19 @@
 import { flexAllCenter } from 'Styles/common';
-import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import styled from 'styled-components';
 
 const ToggleBar = () => {
 	const navigate = useNavigate();
+	const location = useLocation();
+
+	const PathNameArr = location.pathname.split('/');
+	const current = PathNameArr[2];
+
+	useEffect(() => {
+		navigate('/mypage/item');
+	}, []);
 
 	const toggleMenu = [
 		{
@@ -25,7 +34,7 @@ const ToggleBar = () => {
 		},
 		{
 			title: '내 후기',
-			address: '',
+			address: 'review',
 		},
 	];
 
@@ -37,9 +46,12 @@ const ToggleBar = () => {
 		<S.Wrapper>
 			{toggleMenu.map(toggle => (
 				<>
-					<div onClick={() => onClickToggle(toggle.address)}>
+					<S.Menu
+						onClick={() => onClickToggle(toggle.address)}
+						currentMenu={current === toggle.address}
+					>
 						{toggle.title}
-					</div>
+					</S.Menu>
 				</>
 			))}
 		</S.Wrapper>
@@ -49,14 +61,33 @@ const ToggleBar = () => {
 export default ToggleBar;
 
 const Wrapper = styled.div`
-	margin: 50px 0;
+	margin: 0 0 50px;
+	padding: 0 80px;
 	${flexAllCenter}
-	& > div {
-		margin: 0 30px;
-		font-size: ${({ theme }) => theme.fontSize.lg};
+	width: 100%;
+	height: 50px;
+	background-color: ${({theme}) => theme.color.gray[100]};
+	& > div:first-child {
+		border-left: none;
 	}
+`;
+
+const Menu = styled.div`
+	width: 200px;
+	height: 50px;
+	${flexAllCenter}
+	font-size: ${({ theme }) => theme.fontSize.base};
+	font-weight: ${({ theme }) => theme.fontWeight.bolder};
+	border-left: solid 1px ${({theme}) => theme.color.gray[200]};
+	:hover {
+		cursor: pointer;
+		background-color: ${({theme}) => theme.color.gray[200]};
+	}
+	background-color: ${({ currentMenu }) => (currentMenu ? '#FFD1D1' : '#E9E9E9')};
+	border-bottom: solid 3px ${({ currentMenu }) => (currentMenu ? '#FF3647' : '#E9E9E9')};
 `;
 
 const S = {
 	Wrapper,
+	Menu,
 };

@@ -1,4 +1,8 @@
-import { flexAlignCenter, flexAllCenter } from 'Styles/common';
+import {
+	flexAlignCenter,
+	flexAllCenter,
+	flexJustifyCenter,
+} from 'Styles/common';
 import styled from 'styled-components';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
@@ -9,7 +13,6 @@ import { FORM_TYPE } from 'Consts/FormType';
 import TokenService from 'Repository/TokenService';
 import Input from 'Components/Input/input';
 import CustomButton from 'Components/Buttons/button';
-import { useQuery } from '@tanstack/react-query';
 
 const SignUpPage = () => {
 	const navigate = useNavigate();
@@ -49,6 +52,8 @@ const SignUpPage = () => {
 		}
 	};
 
+	// const { mutate, data, isLoading, error } = useMutation();
+
 	const onCheckId = async e => {
 		e.preventDefault();
 		const value = getValues('email');
@@ -76,18 +81,6 @@ const SignUpPage = () => {
 		}
 	};
 
-	// query 로 변형 해보긴 했으나, api 풀리면 확인해 볼 예정. hook form 이랑 같이 쓰는 법을 모름.
-	const test = () => {
-		const { isLoading, error, data } = useQuery(['onCheckNick'], () =>
-			UserApi.checkNickname(getValues('nick')),
-		);
-
-		console.log(data);
-
-		if (isLoading) return <div> 로딩중... </div>;
-		if (error) return <div>error!!</div>;
-	};
-
 	useEffect(() => {
 		setNickMsg();
 	}, [getValues('nick')]);
@@ -100,143 +93,146 @@ const SignUpPage = () => {
 		address;
 
 	return (
-		<S.Div>
-			<S.Wrap>
-				<S.Header>
-					<p>회원가입</p>
-				</S.Header>
-				<S.Form onSubmit={handleSubmit(onSubmit)}>
-					<S.InputWrapBtn>
-						<S.ItemWrap>
-							<S.Mark>*</S.Mark>
-							<span>아이디</span>
-						</S.ItemWrap>
-						<S.InputBoxWrap>
-							<S.InputHalf
-								shape={'littleShape'}
-								{...register('email', FORM_TYPE.EMAIL)}
-								placeholder="E-mail"
-							/>
-							<S.CheckBtn
-								disabled={errors.email || !'email'}
-								onClick={onCheckId}
-								shape={'submitBtn'}
-								size={'submitBtn'}
-							>
-								중복확인
-							</S.CheckBtn>
-						</S.InputBoxWrap>
-					</S.InputWrapBtn>
-					{errors.email && <S.Error>{errors.email.message}</S.Error>}
-					{<S.Error>{idMsg}</S.Error>}
-					<S.InputWrap>
-						<S.ItemWrap>
-							<S.Mark>*</S.Mark>
-							<span>비밀번호</span>
-						</S.ItemWrap>
-						<S.InputBoxWrap>
-							<S.InputCustom
-								shape={'littleShape'}
-								{...register('password', FORM_TYPE.PASSWORD)}
-								placeholder="특수문자, 영어, 숫자 포함 8자이상"
-								type="password"
-							/>
-						</S.InputBoxWrap>
-					</S.InputWrap>
-					{errors.password && <S.Error>{errors.password.message}</S.Error>}
-					<S.InputWrap>
-						<S.ItemWrap>
-							<S.Mark>*</S.Mark>
-							<span>비밀번호 확인</span>
-						</S.ItemWrap>
-						<S.InputBoxWrap>
-							<S.InputCustom
-								shape={'littleShape'}
-								{...register('confirmPW', {
-									required: true,
-									validate: value => {
-										if (getValues('password') !== value) {
-											return '비밀번호를 다시 확인해 주세요';
-										}
-									},
-								})}
-								placeholder="PW check"
-								type="password"
-							/>
-						</S.InputBoxWrap>
-					</S.InputWrap>
-					{errors.confirmPW && <S.Error>{errors.confirmPW.message}</S.Error>}
-					<S.InputWrapBtn>
-						<S.ItemWrap>
-							<S.Mark>*</S.Mark>
-							<span>닉네임</span>
-						</S.ItemWrap>
-						<S.InputBoxWrap>
-							<S.InputHalf
-								shape={'littleShape'}
-								{...register('nick', FORM_TYPE.NICKNAME)}
-								placeholder="Nick_Name"
-							/>
+		<>
+			<S.Logo src="/Assets/web_logo.png"></S.Logo>
+			<S.Div>
+				<S.Wrap>
+					<S.Header>
+						<p>회원가입</p>
+					</S.Header>
+					<S.Form onSubmit={handleSubmit(onSubmit)}>
+						<S.InputWrapBtn>
+							<S.ItemWrap>
+								<S.Mark>*</S.Mark>
+								<span>아이디</span>
+							</S.ItemWrap>
+							<S.InputBoxWrap>
+								<S.InputHalf
+									shape={'littleShape'}
+									{...register('email', FORM_TYPE.EMAIL)}
+									placeholder="E-mail"
+								/>
+								<S.CheckBtn
+									disabled={errors.email || !'email'}
+									onClick={onCheckId}
+									shape={'submitBtn'}
+									size={'submitBtn'}
+								>
+									중복확인
+								</S.CheckBtn>
+							</S.InputBoxWrap>
+						</S.InputWrapBtn>
+						{errors.email && <S.Error>{errors.email.message}</S.Error>}
+						{<S.Error>{idMsg}</S.Error>}
+						<S.InputWrap>
+							<S.ItemWrap>
+								<S.Mark>*</S.Mark>
+								<span>비밀번호</span>
+							</S.ItemWrap>
+							<S.InputBoxWrap>
+								<S.InputCustom
+									shape={'littleShape'}
+									{...register('password', FORM_TYPE.PASSWORD)}
+									placeholder="특수문자, 영어, 숫자 포함 8자이상"
+									type="password"
+								/>
+							</S.InputBoxWrap>
+						</S.InputWrap>
+						{errors.password && <S.Error>{errors.password.message}</S.Error>}
+						<S.InputWrap>
+							<S.ItemWrap>
+								<S.Mark>*</S.Mark>
+								<span>비밀번호 확인</span>
+							</S.ItemWrap>
+							<S.InputBoxWrap>
+								<S.InputCustom
+									shape={'littleShape'}
+									{...register('confirmPW', {
+										required: true,
+										validate: value => {
+											if (getValues('password') !== value) {
+												return '비밀번호를 다시 확인해 주세요';
+											}
+										},
+									})}
+									placeholder="PW check"
+									type="password"
+								/>
+							</S.InputBoxWrap>
+						</S.InputWrap>
+						{errors.confirmPW && <S.Error>{errors.confirmPW.message}</S.Error>}
+						<S.InputWrapBtn>
+							<S.ItemWrap>
+								<S.Mark>*</S.Mark>
+								<span>닉네임</span>
+							</S.ItemWrap>
+							<S.InputBoxWrap>
+								<S.InputHalf
+									shape={'littleShape'}
+									{...register('nick', FORM_TYPE.NICKNAME)}
+									placeholder="Nick_Name"
+								/>
 
-							<S.CheckBtn
-								disabled={errors.nick || !'nick'}
-								onClick={onCheckNick}
-								shape={'submitBtn'}
+								<S.CheckBtn
+									disabled={errors.nick || !'nick'}
+									onClick={onCheckNick}
+									shape={'submitBtn'}
+									size={'submitBtn'}
+								>
+									중복확인
+								</S.CheckBtn>
+							</S.InputBoxWrap>
+						</S.InputWrapBtn>
+						{<S.Error>{nickMsg}</S.Error>}
+						{errors.nick && <S.Error>{errors.nick.message}</S.Error>}
+						<S.InputWrap>
+							<S.ItemWrap>
+								<S.Mark>*</S.Mark>
+								<span>전화번호</span>
+							</S.ItemWrap>
+							<S.InputBoxWrap>
+								<S.InputCustom
+									shape={'littleShape'}
+									maxLength="13"
+									{...register('phone', {
+										onChange: e => {
+											setValue(
+												'phone',
+												e.target.value
+													.replace(/[^0-9]/g, '')
+													.replace(/^(\d{2,3})(\d{3,4})(\d{4})$/, `$1-$2-$3`),
+											);
+										},
+									})}
+									placeholder="010-0000-0000"
+								/>
+							</S.InputBoxWrap>
+						</S.InputWrap>
+						{errors.phone && <S.Error>{errors.phone.message}</S.Error>}
+						<S.InputWrapBtn>
+							<S.ItemWrap>
+								<S.Mark>*</S.Mark>
+								<span>주소</span>
+							</S.ItemWrap>
+							<S.InputBoxWrap>
+								<S.Address>{address}</S.Address>
+								<FindAddress setter={setAddress} />
+							</S.InputBoxWrap>
+						</S.InputWrapBtn>
+						<S.BtnWrap>
+							<S.Button
+								type="submit"
+								disabled={!full}
 								size={'submitBtn'}
+								shape={'submitBtn'}
 							>
-								중복확인
-							</S.CheckBtn>
-						</S.InputBoxWrap>
-					</S.InputWrapBtn>
-					{<S.Error>{nickMsg}</S.Error>}
-					{errors.nick && <S.Error>{errors.nick.message}</S.Error>}
-					<S.InputWrap>
-						<S.ItemWrap>
-							<S.Mark>*</S.Mark>
-							<span>전화번호</span>
-						</S.ItemWrap>
-						<S.InputBoxWrap>
-							<S.InputCustom
-								shape={'littleShape'}
-								maxLength="13"
-								{...register('phone', {
-									onChange: e => {
-										setValue(
-											'phone',
-											e.target.value
-												.replace(/[^0-9]/g, '')
-												.replace(/^(\d{2,3})(\d{3,4})(\d{4})$/, `$1-$2-$3`),
-										);
-									},
-								})}
-								placeholder="010-0000-0000"
-							/>
-						</S.InputBoxWrap>
-					</S.InputWrap>
-					{errors.phone && <S.Error>{errors.phone.message}</S.Error>}
-					<S.InputWrapBtn>
-						<S.ItemWrap>
-							<S.Mark>*</S.Mark>
-							<span>주소</span>
-						</S.ItemWrap>
-						<S.InputBoxWrap>
-							<S.Address>{address}</S.Address>
-							<FindAddress setter={setAddress} />
-						</S.InputBoxWrap>
-					</S.InputWrapBtn>
-					<S.BtnWrap>
-						<S.Button
-							type="submit"
-							disabled={!full}
-							size={'submitBtn'}
-							shape={'submitBtn'}
-						>
-							회원가입
-						</S.Button>
-					</S.BtnWrap>
-				</S.Form>
-			</S.Wrap>
-		</S.Div>
+								회원가입
+							</S.Button>
+						</S.BtnWrap>
+					</S.Form>
+				</S.Wrap>
+			</S.Div>
+		</>
 	);
 };
 
@@ -247,25 +243,28 @@ const Div = styled.div`
 	${flexAllCenter}
 `;
 
+const Logo = styled.img`
+	${flexJustifyCenter}
+	margin: 50px auto 0;
+	max-width: 300px;
+`;
+
 const Wrap = styled.div`
 	width: 80%;
 	flex-direction: column;
 	${flexAllCenter}
+	@media ${({ theme }) => theme.device.mobile} {
+		width: 95%;
+	}
 `;
 
 const Header = styled.div`
 	width: 100%;
-	height: 150px;
-	padding-top: 50px;
-	margin-bottom: 10px;
+	height: 130px;
+	padding-top: 10px;
 	${flexAllCenter}
 	font-size: ${({ theme }) => theme.fontSize.lg};
 	font-weight: ${({ theme }) => theme.fontWeight.bold};
-`;
-
-const LogoImage = styled.img`
-	max-width: 100%;
-	max-height: 100%;
 `;
 
 const Form = styled.form`
@@ -273,10 +272,12 @@ const Form = styled.form`
 	flex-direction: column;
 	align-items: center;
 	width: 100%;
-	padding: 40px 30px;
+	padding: 30px 30px;
 	max-width: 800px;
-	min-width: 600px;
 	border-top: 1px solid ${({ theme }) => theme.color.gray[200]};
+	@media ${({ theme }) => theme.device.mobile} {
+		padding: 30px 0;
+	}
 `;
 
 const BtnWrap = styled.div`
@@ -292,11 +293,18 @@ const Button = styled(CustomButton)`
 	);
 	border: none;
 	color: ${({ theme }) => theme.color.fontColor[100]};
+	@media ${({ theme }) => theme.device.mobile} {
+		width: 100%;
+	}
 `;
 
 const ItemWrap = styled.div`
 	display: flex;
 	width: 20%;
+
+	@media ${({ theme }) => theme.device.mobile} {
+		width: 100%;
+	}
 `;
 
 const InputBoxWrap = styled.div`
@@ -315,12 +323,18 @@ const InputCustom = styled(Input)`
 	min-height: 45px;
 	margin: 10px;
 	border: 2px solid ${({ theme }) => theme.color.gray[100]};
+	@media ${({ theme }) => theme.device.mobile} {
+		margin: 10px 0;
+	}
 `;
 const InputHalf = styled(Input)`
 	min-height: 45px;
 	margin: 10px;
 	width: 74%;
 	border: 2px solid ${({ theme }) => theme.color.gray[100]};
+	@media ${({ theme }) => theme.device.mobile} {
+		margin: 10px 0;
+	}
 `;
 
 const InputWrap = styled.div`
@@ -328,6 +342,10 @@ const InputWrap = styled.div`
 	display: flex;
 	justify-content: end;
 	align-items: center;
+	@media ${({ theme }) => theme.device.mobile} {
+		flex-direction: column;
+		align-items: start;
+	}
 `;
 
 const InputWrapBtn = styled.div`
@@ -335,6 +353,10 @@ const InputWrapBtn = styled.div`
 	display: flex;
 	justify-content: end;
 	align-items: center;
+	@media ${({ theme }) => theme.device.mobile} {
+		flex-direction: column;
+		align-items: start;
+	}
 `;
 
 const Mark = styled.span`
@@ -347,6 +369,11 @@ const Error = styled.div`
 	text-align: start;
 	color: ${({ theme }) => theme.color.error};
 	font-size: ${({ theme }) => theme.fontSize.sm};
+	@media ${({ theme }) => theme.device.mobile} {
+		width: 100%;
+		text-align: end;
+		margin-bottom: 10px;
+	}
 `;
 
 const Address = styled.div`
@@ -369,9 +396,9 @@ const CheckBtn = styled(CustomButton)`
 
 const S = {
 	Div,
+	Logo,
 	Wrap,
 	Header,
-	LogoImage,
 	Form,
 	Button,
 	InputWrap,

@@ -24,10 +24,7 @@ const UserApi = {
 		return Axios.get(PATH + '/refreshToken');
 	},
 	userInfo() {
-		return Axios.get(PATH, '/info');
-	},
-	myPage() {
-		return Axios.get(PATH, '/my-page');
+		return Axios.get(PATH + '/info');
 	},
 	userInfoEdit({ email, region, nickName, phone }) {
 		return Axios.patch(PATH, {
@@ -35,6 +32,13 @@ const UserApi = {
 			region,
 			nickName,
 			phone,
+		});
+	},
+	userProfileEdit(image) {
+		return Axios.patch(PATH + '/profile', image, {
+			headers: {
+				'Content-Type': 'multipart/form-data',
+			},
 		});
 	},
 };

@@ -64,7 +64,7 @@ const sizeCSS = {
 		width: 128px;
 		height: 64px;
 		padding: 16px 9;
-		font-size: ${({ theme }) => theme.FONT_fontSizeSIZE.medium};
+		font-size: ${({ theme }) => theme.fontSize.medium};
 	`,
 	full: css`
 		width: 100%;
@@ -79,3 +79,4 @@ export const PropsBtn = styled.button`
     ${({ size }) => sizeCSS[size]}
 	cursor: ${({ disabled }) => (disabled ? 'default' : 'pointer')};
 `;
+

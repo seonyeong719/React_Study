@@ -1,77 +1,50 @@
 import styled from 'styled-components';
-import MyPageApi from 'Apis/myPageApi';
-import { useEffect, useState } from 'react';
+import { gridAllCenter, gridColumn, gridGap } from 'Styles/common';
+import useInfiniteMy from 'Hooks/Queries/get.infinity.interest';
 import InterestCard from 'Components/Card/Desktop/Card_Interest';
-import { gridAllCenter, gridColumn } from 'Styles/common';
-import { useParams } from 'react-router-dom';
-import { useInfiniteQuery } from '@tanstack/react-query';
+import { useInView } from 'react-intersection-observer';
+import { useEffect } from 'react';
 
 const MyInterestPage = () => {
-	const [likeList, setLikeList] = useState();
-	const { page } = useParams();
+	const res = useInfiniteMy();
+	const [ref, inView] = useInView({ threshold: 0.5 });
+	const { data, hasNextPage, fetchNextPage, isLoading } = res;
 
-	// const myInterest = async () => {
-	// 	try {
-	// 		const res = await MyPageApi.likeProductList({ page: 1 });
-	// 		setLikeList(res.data.LikeList);
-	// 	} catch (error) {
-	// 		console.log(error);
+	// const loadMore = () => {
+	// 	if (hasNextPage) {
+	// 		fetchNextPage();
 	// 	}
 	// };
 
 	useEffect(() => {
-		['myInterest'];
-	}, []);
-
-	const projects = async ({ pageParam = 1 }) => {
-		const res = await MyPageApi.likeProductList({ page: pageParam });
-		return res;
-	};
-
-	const {
-		data,
-		fetchNextPage,
-		isFetchingNextPage,
-		hasNextPage,
-		isLoading,
-		isError,
-	} = useInfiniteQuery(['myInterest'], projects, {
-		getNextPageParam: (lastPage, allPages) => {
-			// return lastPage.pages ? lastPage.pages + 1 : 'ddd';
-			const nextPage = lastPage.page + 1;
-			return nextPage > allPages ? null : nextPage;
-		},
-	});
-
-	const real = data?.pages.map(el => el.data.LikeList);
-	console.log(real);
-	// console.log(data?.pages)
-
-	if (isLoading) {
-		return <h1>Loading...</h1>;
-	}
-
-	if (isError) {
-		return <span>Error</span>;
-	}
+		if (!inView) {
+			return;
+		}
+		fetchNextPage();
+	}, [inView]);
 
 	return (
-		<S.Wrap>
-			<S.Container>
-				{real.map(product => (
-					<S.Card>
-						<InterestCard index={product.idx} products={product} />
-					</S.Card>
-				))}
-			</S.Container>
-			<button onClick={() => fetchNextPage()} disabled={!hasNextPage}>
-				{isFetchingNextPage
-					? 'Loading more...'
-					: hasNextPage
-					? 'Load More'
-					: 'Nothing more to load'}
-			</button>
-		</S.Wrap>
+		<>
+			{isLoading ? (
+				<div>로딩</div> // 임시 로딩
+			) : (
+				<S.Wrap>
+					<S.Container>
+						{data.pages.map(page =>
+							page.data.LikeList.map(list => (
+								<S.Card>
+									<InterestCard index={list.idx} products={list.Product} />
+								</S.Card>
+							)),
+						)}
+					</S.Container>
+					{/* <button onClick={() => loadMore()} disabled={!hasNextPage}>
+						더보기
+					</button> */}
+					<div ref={ref}></div>
+				</S.Wrap>
+			)}
+		</>
 	);
 };
 
@@ -88,9 +61,11 @@ const Container = styled.div`
 	${gridAllCenter}
 	@media ${({ theme }) => theme.device.tablet} {
 		${gridColumn(3)}
+		${gridGap.tablet}
 	}
 	@media ${({ theme }) => theme.device.mobile} {
 		${gridColumn(2)}
+		${gridGap.mobile}
 	}
 `;
 

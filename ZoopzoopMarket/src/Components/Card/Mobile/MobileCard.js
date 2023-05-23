@@ -56,7 +56,7 @@ const ItemTitle = styled.div`
 
 const ItemPrice = styled.span`
 	font-size: ${({ theme }) => theme.fontSize.sm};
-	font-weight: ${({ theme }) => theme.FONT_WEIGHT.bold};
+	font-weight: ${({ theme }) => theme.fontWeight.bold};
 	margin-bottom: 15px;
 `;
 

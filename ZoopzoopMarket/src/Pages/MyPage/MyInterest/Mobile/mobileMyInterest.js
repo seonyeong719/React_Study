@@ -28,7 +28,7 @@ const MobileMyInterestPage = () => {
 							<S.ItemPrice>130,000 원</S.ItemPrice>
 							<S.ItemTag>#태그 #태그2 #태그3</S.ItemTag>
 							<S.EditBtns>
-								<HeartBtn />
+									<HeartBtn/>
 							</S.EditBtns>
 						</S.ItemInfo>
 					</S.Container>
