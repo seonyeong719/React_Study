@@ -45,6 +45,8 @@ const fontWeight = {
 
 // media query
 const deviceWidth = {
+	// mobile: 600,
+	// tablet: 1200,
 	mobile: 414,
 	tablet: 768,
 	laptop: 1440,

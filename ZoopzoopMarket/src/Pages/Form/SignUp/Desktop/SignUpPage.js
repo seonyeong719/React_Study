@@ -13,6 +13,7 @@ import { FORM_TYPE } from 'Consts/FormType';
 import TokenService from 'Repository/TokenService';
 import Input from 'Components/Input/input';
 import CustomButton from 'Components/Buttons/button';
+import { useMutation } from '@tanstack/react-query';
 
 const SignUpPage = () => {
 	const navigate = useNavigate();
@@ -35,7 +36,18 @@ const SignUpPage = () => {
 		formState: { errors },
 	} = useForm({ mode: 'onChange' });
 
-	const onSubmit = async data => {
+	// signUp mutation
+	const { mutate } = useMutation(info => UserApi.signup(info), {
+		onSuccess: () => {
+			alert('회원가입이 완료되었습니다.');
+			navigate('/form/login');
+		},
+		onError: err => {
+			alert(err.response.data.message);
+		},
+	});
+
+	const onSubmit = data => {
 		const info = {
 			email: data.email,
 			pw: data.password,
@@ -43,26 +55,32 @@ const SignUpPage = () => {
 			phone: data.phone,
 			region: address,
 		};
-		try {
-			await UserApi.signup(info);
-			alert('회원가입이 완료되었습니다.');
-			navigate('/form/login');
-		} catch (err) {
-			alert(err.response.data.message);
-		}
+		mutate(info);
 	};
 
-	// const { mutate, data, isLoading, error } = useMutation();
+	// 이메일 중복체크
 
-	const onCheckId = async e => {
+	const value = getValues('email');
+	const { data, refetch, error, isError, isLoading } = useCheckEmail(value);
+
+	// console.log(data);
+	// console.log(isLoading);
+
+	// console.log(error);
+	// if (!isLoading && error) {
+	// 	console.log(error.response.data.message);
+	// }
+	// 이메일 중복체크
+	const onCheckId = e => {
 		e.preventDefault();
-		const value = getValues('email');
-		try {
-			const res = await UserApi.checkEmail(value);
-			setIdMsg(res.data.message);
-		} catch (err) {
-			setIdMsg(err.response.data.message);
-		}
+		refetch(data);
+		// console.log(message);
+		// try {
+		// 	const res = await UserApi.checkEmail(value);
+		// 	setIdMsg(res.data.message);
+		// } catch (err) {
+		// 	setIdMsg(err.response.data.message);
+		// }
 	};
 
 	// input 값에 변화가 생길때 msg 칸을 비워주는
@@ -70,6 +88,7 @@ const SignUpPage = () => {
 		setIdMsg('');
 	}, [getValues('email')]);
 
+	// 닉네임 중복체크
 	const onCheckNick = async e => {
 		e.preventDefault();
 		const value = getValues('nick');
@@ -310,14 +329,6 @@ const ItemWrap = styled.div`
 const InputBoxWrap = styled.div`
 	${flexAlignCenter}
 	width: 100%;
-	& > button {
-		width: 120px;
-		height: 40px;
-		border-radius: 10px;
-		background: none;
-		margin-left: 10px;
-		cursor: pointer;
-	}
 `;
 const InputCustom = styled(Input)`
 	min-height: 45px;
@@ -380,13 +391,17 @@ const Address = styled.div`
 	display: flex;
 	height: 40px;
 	margin: 10px 0px;
-	padding-left: 10px;
+	padding-left: 5px;
 	margin-right: 5px;
 	align-items: center;
 `;
+
 const CheckBtn = styled(CustomButton)`
 	font-weight: normal;
 	min-height: 45px;
+	width: 120px;
+	background: none;
+	margin-left: 10px;
 	border: 2px solid ${({ theme }) => theme.color.primary[400]};
 	&:hover {
 		color: ${({ theme }) => theme.color.fontColor[100]};

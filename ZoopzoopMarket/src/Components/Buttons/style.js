@@ -40,7 +40,7 @@ const sizeCSS = {
 		font-weight: ${({ theme }) => theme.fontWeight.regular};
 	`,
 	submitBtn: css`
-		width: 400px;
+		/* width: 400px; */
 		height: 52px;
 		font-size: ${({ theme }) => theme.fontSize.base};
 		font-weight: ${({ theme }) => theme.fontWeight.bold};
@@ -79,4 +79,3 @@ export const PropsBtn = styled.button`
     ${({ size }) => sizeCSS[size]}
 	cursor: ${({ disabled }) => (disabled ? 'default' : 'pointer')};
 `;
-
